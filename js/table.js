@@ -14,6 +14,7 @@ class table {
 	this.data = data;
 	this.clans = [];
 	this.pl = [];
+	this.pl2 = [];
 	//Draw background
 	var bg = new createjs.Shape();
 	bg.graphics.beginFill("#065861").drawRect(0, 0, 850, 480);
@@ -25,7 +26,7 @@ class table {
 	var mid = new createjs.Shape();
 	mid.graphics.beginFill("#ffffff").drawRect(227, 239, 396, 2);
 	this.stage.addChild(mid);
-	this.drawPlayerNames();
+	// this.drawPlayerNames();
   }
 
   processData() {
@@ -50,17 +51,28 @@ class table {
 	  else plcmt = j + 1 +  "th";
 	  this.pl[j]["plcmt"] = plcmt;
 	}
-	console.log(this.pl);
 	this.clans.sort((a,b) => {
 	  return b.score - a.score;
 	});
+
+	//Draw clan tags
 	try {
 	  this.drawClanTag(this.clans[0]["tag"], this.clans[0]["name"], this.stage, true);
 	  this.drawClanTag(this.clans[1]["tag"], this.clans[1]["name"], this.stage, false);
 	}
 	catch { console.log("Error!"); }
-	console.log(this.clans);
-	this.stage.update();
+
+	//Split up the players into two arrays
+	for (let k = 0; k < this.pl.length; k++) {
+	  if (this.pl[k]["clan"] == this.clans[1]["tag"]) {
+		this.pl2.push(this.pl[k]);
+		this.pl.splice(k, 1);
+		k--;
+	  }
+	}
+	this.drawPlayerInfo(this.pl, 0);
+	this.drawPlayerInfo(this.pl2, 240);
+	console.log(this.pl);
   }
 
   extractTag(i, clans) {
@@ -85,10 +97,13 @@ class table {
 	for (i; i < this.data.length; i++) {
 	  let line = this.data[i];
 	  if (this.isEmptyOrSpaces(line)) break;
+	  let name = line.match(/.*\[.*\]{1}/).toString();
+	  name = name.substr(0, name.length - 5);
+	  line = line.trimRight();
 	  line = line.split(' ');
-	  let name = line[0];
-	  let country = line[1];
-	  let score = line[2];
+	  console.log(line);
+	  let country = line[line.length - 2];
+	  let score = line[line.length - 1];
 	  let penalty = 0;
 	  //Add scores or add penalty
 	  if (score.includes("+")) {
@@ -141,68 +156,26 @@ class table {
 	stage.update();
   }
 
-  drawPlayerInfo() {
-	
-  }
-
-  drawPlayerNames() {
-	var test = new createjs.Text();
-	test.set({
-	  text: "Ace Tman",
-	  font: "22px Oswald",
-	  color: "#ffffff",
-	  textAlign: "center",
-	  textBaseLine: "middle",
-	  x: 346,
-	  y: 36-15
-	});
-	// var test2 = new createjs.Text();
-	// test2.set({
-	  // text: "3rd",
-	  // font: "16px Oswald",
-	  // color: "#ffffff",
-	  // textAlign: "center",
-	  // textBaseLine: "middle",
-	  // x: 390,
-	  // y: 41
-	// });
-	var test2 = new createjs.Text();
-	test2.set({
-	  text: "Ace Tman",
-	  font: "22px Oswald",
-	  color: "#ffffff",
-	  textAlign: "center",
-	  textBaseLine: "middle",
-	  x: 346,
-	  y: 186+15
-	});
-	let y_pos = 66-15;
-	for (let i = 0; i < 5; i++) {
-	  var rest = new createjs.Text();
-	  rest.set({
-		text: "Ace Tman",
-		font: "22px Oswald",
-		color: "#ffffff",
-		textAlign: "center",
-		textBaseLine: "middle",
-		x: 346,
-		y: y_pos
-	  });
-	  this.stage.addChild(rest);
+  drawPlayerInfo(pl, y_pos) {
+	let text_size = (30 * pl.length) - 12;
+	let buffer_size = (240 - text_size) / 2;
+	y_pos += buffer_size;
+	let t = new textFactory("Oswald", 22, "");
+	let t_p = new textFactory("Oswald", 16, "");
+	let j = new imageFactory(this.stage);
+	// let i = new imageFactory(this.stage);
+	for (let i = 0; i < pl.length; i++) {
+	  //Name
+	  this.stage.addChild(t.getText(pl[i]["name"], 346, y_pos));
+	  //Flag
+	  let cn = pl[i]["country"].slice(1,3);
+	  j.loadImage("static/images/flags/" + cn + ".png", 0, 0, 346 + 91, y_pos - 2, 0, cn);
+	  //Score
+	  this.stage.addChild(t.getText(pl[i]["score"], 346 + 149, y_pos));
+	  //Placement
+	  this.stage.addChild(t_p.getText(pl[i]["plcmt"], 346 + 199, y_pos + 5));
 	  y_pos += 30;
 	}
-	let i = new imageFactory(this.stage);
-	i.loadImage("static/images/flags/ca.png", 0, 0, 280, 19, 0, "ca");
-	i.loadImage("static/images/flags/us.png", 0, 0, 280, 19+30, 0, "us");
-	i.loadImage("static/images/flags/us.png", 0, 0, 280, 19+60, 0, "us");
-	i.loadImage("static/images/flags/uk.png", 0, 0, 280, 19+90, 0, "uk");
-	i.loadImage("static/images/flags/us.png", 0, 0, 280, 19+120, 0, "us");
-	i.loadImage("static/images/flags/us.png", 0, 0, 280, 19+150, 0, "us");
-	i.loadImage("static/images/flags/us.png", 0, 0, 280, 19+30, 0, "us");
-	i.loadImage("static/images/flags/us.png", 0, 0, 310, 19+30, 0, "us");
-	i.loadImage("static/images/flags/us.png", 0, 0, 310, 19+30, 0, "us");
-	this.stage.addChild(test2);
-	this.stage.addChild(test);
 	this.stage.update();
   }
 
