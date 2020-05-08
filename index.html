@@ -20,7 +20,7 @@ gdin [ca] 180
 					<option value="sky">Sky</option>
 					<option value="terra">Terra</option>
 				</select><br />
-				<input type="button" style="margin-top: 5px" value="Generate Table" onclick="test();">
+				<input type="button" style="margin-top: 5px" value="Generate Table" onclick="main();">
 			</div>
 			<div class="tablecanvas">
 				<canvas id="table" width="850px" height="480px"></canvas>
@@ -28,6 +28,11 @@ gdin [ca] 180
 		</div>
 	</body>
 	<footer>
-		<script src="table.js"></script>
+		<script type="module">
+			import { main } from './js/table.js';
+			window.main = main;
+		</script>
+		<script type="module" src="js/table.js"></script>
+		<script type="modeul" src="js/helper.js"></script>
 	</footer>
 </html>
