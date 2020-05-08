@@ -28,10 +28,10 @@ export class imageFactory {
 	this.stage = stage;
   }
 
-  loadImage(filepath, w = 0, h = 0, x = 0, y = 0, layer = 0) {
-	this.queue.loadFile({src:filepath, id:"image"});
+  loadImage(filepath, w = 0, h = 0, x = 0, y = 0, layer = 0, id = "image") {
+	this.queue.loadFile({src:filepath, id: id});
 	this.queue.on("complete", (event) => {
-	  var image = this.queue.getResult("image");
+	  var image = this.queue.getResult(id);
 	  var bmp = new createjs.Bitmap(image);
 	  if (w) bmp.scaleX = w / bmp.image.width;
 	  if (h) bmp.scaleY = h / bmp.image.height;

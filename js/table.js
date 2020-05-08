@@ -54,8 +54,12 @@ class table {
 	this.clans.sort((a,b) => {
 	  return b.score - a.score;
 	});
-	this.drawClanTag(this.clans[0]["tag"], this.clans[0]["name"], this.stage, true);
-	this.drawClanTag(this.clans[1]["tag"], this.clans[1]["name"], this.stage, false);
+	try {
+	  this.drawClanTag(this.clans[0]["tag"], this.clans[0]["name"], this.stage, true);
+	  this.drawClanTag(this.clans[1]["tag"], this.clans[1]["name"], this.stage, false);
+	}
+	catch { console.log("Error!"); }
+	console.log(this.clans);
 	this.stage.update();
   }
 
@@ -68,7 +72,8 @@ class table {
 		clans.push({
 		  "tag": line[0],
 		  "name": line[1],
-		  "score": 0
+		  "score": 0,
+		  "penalty": 0
 		});
 		break;
 	  }
@@ -84,13 +89,31 @@ class table {
 	  let name = line[0];
 	  let country = line[1];
 	  let score = line[2];
+	  let penalty = 0;
+	  //Add scores or add penalty
+	  if (score.includes("+")) {
+		let scores = score.split('+');
+		score = 0;
+		for (let j = 0; j < scores.length - 1; j++) {
+		  score += parseInt(scores[j]);
+		}
+		if (scores[scores.length - 1].includes("-")) {
+		  let last = scores[scores.length - 1].split('-');
+		  score += parseInt(last[0]);
+		  penalty = parseInt(last[1]);
+		}
+		else {
+		  score += parseInt(scores[scores.length - 1]);
+		}
+	  }
 	  let pl = {
 		"name": name,
 		"country": country,
-		"score": score,
+		"score": parseInt(score),
 		"clan": clan["tag"]
 	  };
-	  clan["score"] += parseInt(score);
+	  clan["score"] += score - penalty;
+	  clan["penalty"] -= penalty;
 	  this.pl.push(pl);
 	}
 	return i;
@@ -168,6 +191,16 @@ class table {
 	  this.stage.addChild(rest);
 	  y_pos += 30;
 	}
+	let i = new imageFactory(this.stage);
+	i.loadImage("static/images/flags/ca.png", 0, 0, 280, 19, 0, "ca");
+	i.loadImage("static/images/flags/us.png", 0, 0, 280, 19+30, 0, "us");
+	i.loadImage("static/images/flags/us.png", 0, 0, 280, 19+60, 0, "us");
+	i.loadImage("static/images/flags/uk.png", 0, 0, 280, 19+90, 0, "uk");
+	i.loadImage("static/images/flags/us.png", 0, 0, 280, 19+120, 0, "us");
+	i.loadImage("static/images/flags/us.png", 0, 0, 280, 19+150, 0, "us");
+	i.loadImage("static/images/flags/us.png", 0, 0, 280, 19+30, 0, "us");
+	i.loadImage("static/images/flags/us.png", 0, 0, 310, 19+30, 0, "us");
+	i.loadImage("static/images/flags/us.png", 0, 0, 310, 19+30, 0, "us");
 	this.stage.addChild(test2);
 	this.stage.addChild(test);
 	this.stage.update();
