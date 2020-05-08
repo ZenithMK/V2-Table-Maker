@@ -72,7 +72,7 @@ class table {
 	}
 	this.drawPlayerInfo(this.pl, 0);
 	this.drawPlayerInfo(this.pl2, 240);
-	console.log(this.pl);
+	this.drawScores();
   }
 
   extractTag(i, clans) {
@@ -101,7 +101,6 @@ class table {
 	  name = name.substr(0, name.length - 5);
 	  line = line.trimRight();
 	  line = line.split(' ');
-	  console.log(line);
 	  let country = line[line.length - 2];
 	  let score = line[line.length - 1];
 	  let penalty = 0;
@@ -120,6 +119,11 @@ class table {
 		else {
 		  score += parseInt(scores[scores.length - 1]);
 		}
+	  }
+	  else if (score.includes("-")) {
+		let scores = score.split('-');
+		score = parseInt(scores[0]);
+		penalty = parseInt(scores[1]);
 	  }
 	  let pl = {
 		"name": name,
@@ -144,7 +148,7 @@ class table {
 	let y_pos;
 	win ? y_pos = 55 : y_pos = 312;
 	//draw clan tag
-	let t = new textFactory("Tahoma", 100, "bold");
+	let t = new textFactory("Tahoma", 96, "bold");
 	let tagText = t.getText(tag, 155, y_pos);
 	tagText.shadow = new createjs.Shadow("#000000", 2, 2, 2);
 	stage.addChild(tagText);
@@ -179,6 +183,37 @@ class table {
 	this.stage.update();
   }
 
+  drawScores() {
+	let t = new textFactory("Tahoma", 96, "bold");
+    let clan1 = t.getText(this.clans[0]["score"], 850 - 155, 55 + 28);
+	clan1.shadow = new createjs.Shadow("#000000", 2, 2, 2);
+	this.stage.addChild(clan1);
+	let clan2 = t.getText(this.clans[1]["score"], 850 - 155, 312);
+	clan2.shadow = new createjs.Shadow("#000000", 2, 2, 2);
+	this.stage.addChild(clan2);
+	t = new textFactory("Oswald", 22, "");
+	let diff_num = this.clans[0]["score"] - this.clans[1]["score"];
+	let diff = t.getText("±" + diff_num, 850 - 155, 240 - 9);
+	diff.shadow = new createjs.Shadow("#000000", 2, 2, 2);
+	this.stage.addChild(diff);
+	t = new textFactory("Oswald", 18, "");
+	if (this.clans[0]["penalty"] < 0) {
+	  this.stage.addChild(t.getText(this.clans[0]["penalty"],
+									850 - 155, 240 - 60));
+	}
+	if (this.clans[1]["penalty"] < 0) {
+	  this.stage.addChild(t.getText(this.clans[1]["penalty"],
+									850 - 155, 240 + 44));
+	}
+	let total = this.clans[0]["score"] + this.clans[1]["score"] + this.clans[0]["penalty"] + this.clans[1]["penalty"];
+	if (total != 984) {
+	  document.getElementById('warning').innerHTML = "Warning - Scores do not add up to 984!";
+	}
+	else {
+	  document.getElementById('warning').innerHTML = "";
+	}
+  }
+	
   //Draw ARC logo
   drawARCLogo(stage, style = "arc") {
 	let filename;

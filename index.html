@@ -8,7 +8,7 @@
 		<!-- <link href="https://fonts.googleapis.com/css2?family=Oswald&display=swap" rel="stylesheet"> -->
 	</head>
 	<body>
-		<h3>gdin's ARC table generator. original design by 8ran</h3>
+		<h3>gdin's ARC table generator. original table design by 8ran</h3>
 		<div class="container">
 			<div class="textarea">
 				<textarea id="dataentry" rows="20" cols="25"
@@ -24,7 +24,12 @@ gdin [ca] 180
 				<input type="button" style="margin-top: 5px" value="Generate Table" onclick="main();">
 			</div>
 			<div class="tablecanvas">
-				<canvas id="table" width="850px" height="480px"></canvas>
+				<div>
+					<canvas id="table" width="850px" height="480px"></canvas>
+					<br />
+				</div>
+				<div id="warning">
+				</div>
 			</div>
 		</div>
 	</body>
