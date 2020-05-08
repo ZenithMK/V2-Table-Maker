@@ -5,11 +5,21 @@
 		<link rel="stylesheet" type="text/css" href="style.css">
 		<script src="http://cdnjs.cloudflare.com/ajax/libs/ocanvas/2.10.0/ocanvas.min.js"></script>
 		<script src="https://code.createjs.com/1.0.0/createjs.min.js"></script>
+		<!-- <link href="https://fonts.googleapis.com/css2?family=Oswald&display=swap" rel="stylesheet"> -->
 	</head>
 	<body>
 		<div class="container">
 			<div class="textarea">
-				<textarea id="dataentry" rows="20" cols="25"></textarea><br />
+				<textarea id="dataentry" rows="20" cols="25"
+						  placeholder="ARC - Arcadia
+gdin [ca] 180
+
+(same formatting as lorenzi)"></textarea><br />
+				Style: <select id="table-style">
+					<option value="arc">Arcadia</option>
+					<option value="sky">Sky</option>
+					<option value="terra">Terra</option>
+				</select><br />
 				<input type="button" style="margin-top: 5px" value="Generate Table" onclick="test();">
 			</div>
 			<div class="tablecanvas">

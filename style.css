@@ -1,8 +1,13 @@
 @font-face {
-	font: Tahoma;
-	src: url(static/Tahoma.ttf);
+	font-famliy: Tahoma;
+	src: url('static/fonts/Tahoma.ttf');
 }
-	
+
+@font-face {
+	font-family: Oswald;
+	src: url('static/fonts/Oswald-Regular.ttf');
+}
+
 #info {
 	resize: both;
 	overflow: auto;
