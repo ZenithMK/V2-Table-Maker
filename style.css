@@ -1,0 +1,24 @@
+@font-face {
+	font: Tahoma;
+	src: url(static/Tahoma.ttf);
+}
+	
+#info {
+	resize: both;
+	overflow: auto;
+}
+
+.container {
+	position: fixed;
+}
+
+.textarea {
+	display: inline-block;
+	float: left;
+}
+
+.tablecanvas {
+	display: inline-block;
+	float: right;
+	margin-left: 15px
+}
