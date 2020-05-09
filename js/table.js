@@ -74,9 +74,7 @@ class table {
 	  this.drawScores();
 	}
 	catch { console.log("Error!"); }
-
-
-
+	this.stage.update();
   }
 
   extractTag(i, clans) {
@@ -216,6 +214,7 @@ class table {
 	else {
 	  document.getElementById('warning').innerHTML = "";
 	}
+	this.stage.update();
   }
 	
   //Draw ARC logo

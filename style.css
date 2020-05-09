@@ -14,7 +14,7 @@
 }
 
 .container {
-	position: fixed;
+	position: absolute;
 }
 
 .textarea {
@@ -30,7 +30,8 @@
 
 * { box-sizing: border-box; }
 body {
-  font: 16px Arial;
+	font: 16px Arial;
+	overflow-y: scroll;
 }
 .autocomplete {
   /*the container must be positioned relative:*/
@@ -72,4 +73,11 @@ input[type=text] {
   /*when navigating through the items using the arrow keys:*/
   background-color: DodgerBlue !important;
   color: #ffffff;
+}
+table, th, td {
+	border: 1px solid black;
+	border-collapse: collapse;
+}
+th, td {
+	padding: 4px;
 }
