@@ -45,7 +45,7 @@ input {
 }
 input[type=text] {
 	/* background-color: #eaeaea; */
-	width: 150px;
+	width: 300px;
 }
 .autocomplete-items {
   position: absolute;
