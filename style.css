@@ -35,13 +35,17 @@ body {
 .autocomplete {
   /*the container must be positioned relative:*/
   position: relative;
-  /* display: inline-block; */
+  display: inline-block;
 }
 input {
-  border: 1px solid transparent;
-  background-color: #eaeaea;
-  padding: 6px;
+  /* border: 1px solid transparent; */
+  /* background-color: #eaeaea; */
+  padding: 2px;
   font-size: 16px;
+}
+input[type=text] {
+	/* background-color: #eaeaea; */
+	width: 150px;
 }
 .autocomplete-items {
   position: absolute;
