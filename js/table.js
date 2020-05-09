@@ -4,12 +4,14 @@ import { imageFactory } from './helper.js';
 export function main() {
   var data = document.getElementById('dataentry').value.split('\n');
   var style = document.getElementById('table-style').value;
-  var t = new table(style, data);
+  var track = document.getElementById('track').value;
+  console.log(track);
+  var t = new table(style, data, track);
   t.processData();
 }
 
 class table {
-  constructor(style, data) {
+  constructor(style, data, track) {
 	this.stage = new createjs.Stage("table");
 	this.data = data;
 	this.clans = [];
@@ -21,7 +23,8 @@ class table {
 	this.stage.addChild(bg);
 	//Add track image, ARC logo, and middle divider
 	let i = new imageFactory(this.stage);
-	i.loadImage("static/images/dHC.png", 850, 480, 0, 0, 1);
+	if (!track) track = "dAC";
+	i.loadImage("static/images/tracks/" + track + ".png", 850, 480, 0, 0, 1);
 	this.drawARCLogo(this.stage, style);
 	var mid = new createjs.Shape();
 	mid.graphics.beginFill("#ffffff").drawRect(227, 239, 396, 2);
@@ -55,13 +58,6 @@ class table {
 	  return b.score - a.score;
 	});
 
-	//Draw clan tags
-	try {
-	  this.drawClanTag(this.clans[0]["tag"], this.clans[0]["name"], this.stage, true);
-	  this.drawClanTag(this.clans[1]["tag"], this.clans[1]["name"], this.stage, false);
-	}
-	catch { console.log("Error!"); }
-
 	//Split up the players into two arrays
 	for (let k = 0; k < this.pl.length; k++) {
 	  if (this.pl[k]["clan"] == this.clans[1]["tag"]) {
@@ -70,9 +66,18 @@ class table {
 		k--;
 	  }
 	}
-	this.drawPlayerInfo(this.pl, 0);
-	this.drawPlayerInfo(this.pl2, 240);
-	this.drawScores();
+	//Draw clan tags
+	try {
+	  this.drawClanTag(this.clans[0]["tag"], this.clans[0]["name"], this.stage, true);
+	  this.drawClanTag(this.clans[1]["tag"], this.clans[1]["name"], this.stage, false);
+	  this.drawPlayerInfo(this.pl, 0);
+	  this.drawPlayerInfo(this.pl2, 240);
+	  this.drawScores();
+	}
+	catch { console.log("Error!"); }
+
+
+
   }
 
   extractTag(i, clans) {
