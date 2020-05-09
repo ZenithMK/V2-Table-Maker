@@ -5,7 +5,6 @@ export function main() {
   var data = document.getElementById('dataentry').value.split('\n');
   var style = document.getElementById('table-style').value;
   var track = document.getElementById('track').value;
-  console.log(track);
   var t = new table(style, data, track);
   t.processData();
 }
