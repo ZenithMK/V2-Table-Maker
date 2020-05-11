@@ -18,7 +18,7 @@ class table {
 	this.pl2 = [];
 	//Draw background
 	var bg = new createjs.Shape();
-	bg.graphics.beginFill("#065861").drawRect(0, 0, 850, 480);
+	bg.graphics.beginFill("#f6f6ed").drawRect(0, 0, 850, 480);
 	this.stage.addChild(bg);
 	//Add track image, ARC logo, and middle divider
 	let i = new imageFactory(this.stage);
@@ -26,7 +26,7 @@ class table {
 	i.loadImage("static/images/tracks/" + track + ".png", 850, 480, 0, 0, 1);
 	this.drawARCLogo(this.stage, style);
 	var mid = new createjs.Shape();
-	mid.graphics.beginFill("#ffffff").drawRect(227, 239, 396, 2);
+	mid.graphics.beginFill("#ffffff").drawRect(227, 239, 792, 2);
 	this.stage.addChild(mid);
 	// this.drawPlayerNames();
   }
@@ -150,7 +150,7 @@ class table {
 	let y_pos;
 	win ? y_pos = 55 : y_pos = 312;
 	//draw clan tag
-	let t = new textFactory("Tahoma", 96, "bold");
+	let t = new textFactory("Courier New", 96, "bold");
 	let tagText = t.getText(tag, 155, y_pos);
 	tagText.shadow = new createjs.Shadow("#000000", 2, 2, 2);
 	stage.addChild(tagText);
