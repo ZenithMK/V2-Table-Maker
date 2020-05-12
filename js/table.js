@@ -23,7 +23,7 @@ class table {
 	//Add track image, ARC logo, and middle divider
 	let i = new imageFactory(this.stage);
 	if (!track) track = "dAC";
-	i.loadImage("static/images/tracks/" + track + ".png", 850, 480, 0, 0, 1);
+	i.loadImage("static/images/" + "baby-mooden.png", 850, 480, 0, 0, 1);
 	this.drawARCLogo(this.stage, style);
 	var mid = new createjs.Shape();
 	mid.graphics.beginFill("#ffffff").drawRect(227, 239, 792, 2);
@@ -193,7 +193,7 @@ class table {
 	let clan2 = t.getText(this.clans[1]["score"], 850 - 155, 312);
 	clan2.shadow = new createjs.Shadow("#000000", 2, 2, 2);
 	this.stage.addChild(clan2);
-	t = new textFactory("Oswald", 22, "");
+	t = new textFactory("Biome-Bold", 22, "");
 	let diff_num = this.clans[0]["score"] - this.clans[1]["score"];
 	let diff = t.getText("±" + diff_num, 850 - 155, 240 - 9);
 	diff.shadow = new createjs.Shadow("#000000", 2, 2, 2);
@@ -217,18 +217,12 @@ class table {
 	this.stage.update();
   }
 	
-  //Draw ARC logo
-  drawARCLogo(stage, style = "arc") {
+  //Draw V2 logo
+  drawV2Logo(stage, style = "V2") {
 	let filename;
 	switch(style) {
-	case "arc":
-	  filename = "arc1_web.png"
-	  break;
-	case "sky":
-	  filename = "arcsky_web.png"
-	  break;
-	case "terra":
-	  filename = "arcterra_web.png"
+	case "V2":
+	  filename = "notitle.png"
 	  break;
 	}
 	let i = new imageFactory(stage);
