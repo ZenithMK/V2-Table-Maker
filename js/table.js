@@ -150,12 +150,12 @@ class table {
 	let y_pos;
 	win ? y_pos = 55 : y_pos = 312;
 	//draw clan tag
-	let t = new textFactory("Courier New", 96, "bold");
+	let t = new textFactory("Biome-Bold", 96, "bold");
 	let tagText = t.getText(tag, 155, y_pos);
 	tagText.shadow = new createjs.Shadow("#000000", 2, 2, 2);
 	stage.addChild(tagText);
 	//draw clan name
-	t = new textFactory("Oswald", 22, "");
+	t = new textFactory("Biome-Bold", 22, "");
 	let nameText = t.getText(name, 155, y_pos + 98);
 	nameText.shadow = new createjs.Shadow("#000000", 2, 2, 2);
 	stage.addChild(nameText);
@@ -166,8 +166,8 @@ class table {
 	let text_size = (30 * pl.length) - 12;
 	let buffer_size = (240 - text_size) / 2;
 	y_pos += buffer_size;
-	let t = new textFactory("Oswald", 22, "");
-	let t_p = new textFactory("Oswald", 16, "");
+	let t = new textFactory("Biome-Bold", 22, "");
+	let t_p = new textFactory("Biome-Bold", 16, "");
 	let j = new imageFactory(this.stage);
 	// let i = new imageFactory(this.stage);
 	for (let i = 0; i < pl.length; i++) {
@@ -186,7 +186,7 @@ class table {
   }
 
   drawScores() {
-	let t = new textFactory("Tahoma", 96, "bold");
+	let t = new textFactory("Biome-Bold", 96, "bold");
     let clan1 = t.getText(this.clans[0]["score"], 850 - 155, 55 + 28);
 	clan1.shadow = new createjs.Shadow("#000000", 2, 2, 2);
 	this.stage.addChild(clan1);
@@ -198,7 +198,7 @@ class table {
 	let diff = t.getText("±" + diff_num, 850 - 155, 240 - 9);
 	diff.shadow = new createjs.Shadow("#000000", 2, 2, 2);
 	this.stage.addChild(diff);
-	t = new textFactory("Oswald", 18, "");
+	t = new textFactory("Biome-Bold", 18, "");
 	if (this.clans[0]["penalty"] < 0) {
 	  this.stage.addChild(t.getText(this.clans[0]["penalty"],
 									850 - 155, 240 - 60));
