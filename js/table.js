@@ -24,7 +24,7 @@ class table {
 	let i = new imageFactory(this.stage);
 	if (!track) track = "dAC";
 	i.loadImage("static/images/" + "baby-mooden.png", 850, 480, 0, 0, 1);
-	this.drawARCLogo(this.stage, style);
+	this.drawV2Logo(this.stage, style);
 	var mid = new createjs.Shape();
 	mid.graphics.beginFill("#ffffff").drawRect(227, 239, 792, 2);
 	this.stage.addChild(mid);
