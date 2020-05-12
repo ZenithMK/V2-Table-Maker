@@ -150,7 +150,7 @@ class table {
 	let y_pos;
 	win ? y_pos = 55 : y_pos = 312;
 	//draw clan tag
-	let t = new textFactory("Biome-Bold", 96, "bold");
+	let t = new textFactory("Biome-Bold", 96, "");
 	let tagText = t.getText(tag, 155, y_pos);
 	tagText.shadow = new createjs.Shadow("#000000", 2, 2, 2);
 	stage.addChild(tagText);
