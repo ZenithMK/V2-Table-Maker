@@ -222,7 +222,7 @@ class table {
 	let filename;
 	switch(style) {
 	case "V2":
-	  filename = "notitle.png"
+	  filename = "notitle.PNG"
 	  break;
 	}
 	let i = new imageFactory(stage);
