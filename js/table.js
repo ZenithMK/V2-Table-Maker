@@ -18,7 +18,7 @@ class table {
 	this.pl2 = [];
 	//Draw background
 	var bg = new createjs.Shape();
-	bg.graphics.beginFill("#f60025").drawRect(0, 0, 850, 480);
+	bg.graphics.beginFill("	c30101").drawRect(0, 0, 850, 480);
 	this.stage.addChild(bg);
 	//Add track image, ARC logo, and middle divider
 	let i = new imageFactory(this.stage);
@@ -26,7 +26,7 @@ class table {
 	i.loadImage("static/images/" + "baby-mooden.PNG", 850, 480, 0, 0, 1);
 	this.drawV2Logo(this.stage, style);
 	var mid = new createjs.Shape();
-	mid.graphics.beginFill("#ffffff").drawRect(227 + 50, 239, 792 + 50, 2);
+	mid.graphics.beginFill("#ffffff").drawRect(227 + 25, 239, 792 + 50, 2);
 	this.stage.addChild(mid);
 	// this.drawPlayerNames();
   }
