@@ -175,7 +175,7 @@ class table {
 	  this.stage.addChild(t.getText(pl[i]["name"], 346, y_pos));
 	  //Flag
 	  let cn = pl[i]["country"].slice(1,3);
-	  j.loadImage("static/images/flags/" + cn + ".png", 0, 0, 346 + 85, y_pos - 2, 0, cn);
+	  j.loadImage("static/images/flags/" + cn + ".PNG", 0, 0, 346 + 85, y_pos - 2, 0, cn);
 	  //Score
 	  this.stage.addChild(t.getText(pl[i]["score"], 346 + 149, y_pos));
 	  //Placement
