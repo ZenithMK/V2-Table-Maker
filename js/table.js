@@ -18,7 +18,7 @@ class table {
 	this.pl2 = [];
 	//Draw background
 	var bg = new createjs.Shape();
-	bg.graphics.beginFill("#f6f6ed").drawRect(0, 0, 850, 480);
+	bg.graphics.beginFill("#f60025").drawRect(0, 0, 850, 480);
 	this.stage.addChild(bg);
 	//Add track image, ARC logo, and middle divider
 	let i = new imageFactory(this.stage);
@@ -26,7 +26,7 @@ class table {
 	i.loadImage("static/images/" + "baby-mooden.PNG", 850, 480, 0, 0, 1);
 	this.drawV2Logo(this.stage, style);
 	var mid = new createjs.Shape();
-	mid.graphics.beginFill("#ffffff").drawRect(227, 239, 792, 2);
+	mid.graphics.beginFill("#ffffff").drawRect(227 + 50, 239, 792 + 50, 2);
 	this.stage.addChild(mid);
 	// this.drawPlayerNames();
   }
@@ -195,7 +195,7 @@ class table {
 	this.stage.addChild(clan2);
 	t = new textFactory("Biome-Bold", 22, "");
 	let diff_num = this.clans[0]["score"] - this.clans[1]["score"];
-	let diff = t.getText("±" + diff_num, 850 - 155, 240 - 9);
+	let diff = t.getText("±" + diff_num, 850 - 75, 240 - 9);
 	diff.shadow = new createjs.Shadow("#000000", 2, 2, 2);
 	this.stage.addChild(diff);
 	t = new textFactory("Biome-Bold", 18, "");
