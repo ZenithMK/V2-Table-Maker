@@ -24,7 +24,7 @@ class table {
 	i.loadImage("static/images/" + "baby-mooden.PNG", 850, 480, 0, 0, 1);
 	this.drawV2Logo(this.stage, style);
 	var mid = new createjs.Shape();
-	mid.graphics.beginFill("#ffffff").drawRect(227 + 25, 239, 792 + 50, 2);
+	mid.graphics.beginFill("#ffffff").drawRect(227 + 25, 239, 792 + 25, 2);
 	this.stage.addChild(mid);
 	// this.drawPlayerNames();
   }
