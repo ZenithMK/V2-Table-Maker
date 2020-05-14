@@ -21,7 +21,7 @@ class table {
 	//Add track image, ARC logo, and middle divider
 	let i = new imageFactory(this.stage);
 	if (!track) track = "dAC";
-	i.loadImage("static/images/" + "baby-mooden.PNG", 850, 480, 0, 0, 1);
+	i.loadImage("static/images/" + "baby-mooden.png", 850, 480, 0, 0, 1);
 	this.drawV2Logo(this.stage, style);
 	var mid = new createjs.Shape();
 	mid.graphics.beginFill("#ffffff").drawRect(227, 239, 490, 2);
