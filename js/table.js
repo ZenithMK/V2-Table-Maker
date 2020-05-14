@@ -16,7 +16,7 @@ class table {
 	this.pl2 = [];
 	//Draw background
 	var bg = new createjs.Shape();
-	bg.graphics.beginFill("	c30101").drawRect(0, 0, 850, 480);
+	bg.graphics.beginFill("c30101").drawRect(0, 0, 850, 480);
 	this.stage.addChild(bg);
 	//Add track image, ARC logo, and middle divider
 	let i = new imageFactory(this.stage);
