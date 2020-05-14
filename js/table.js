@@ -3,7 +3,6 @@ import { imageFactory } from './helper.js';
 
 export function main() {
   var data = document.getElementById('dataentry').value.split('\n');
-  var track = document.getElementById('track').value;
   var t = new table(style, data, track);
   t.processData();
 }
@@ -230,4 +229,3 @@ class table {
 }
 
 
-main();
